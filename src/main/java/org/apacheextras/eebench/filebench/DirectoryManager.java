@@ -60,6 +60,7 @@ public class DirectoryManager {
         try {
             FileWriter fw = new FileWriter(file);
             fw.write(content);
+            fw.close();
         }
         catch (IOException ioe) {
             throw new RuntimeException(ioe);
