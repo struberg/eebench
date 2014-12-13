@@ -1,0 +1,1 @@
+Small JavaEE benchmark suite
