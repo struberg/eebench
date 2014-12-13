@@ -1,0 +1,129 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.apacheextras.eebench</groupId>
+    <artifactId>eebench</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+
+    <properties>
+
+        <tomee.version>1.7.1</tomee.version>
+
+        <!-- for most samples simple web-profile is enough -->
+        <tomee.classifier>webprofile</tomee.classifier>
+    </properties>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.geronimo.specs</groupId>
+            <artifactId>geronimo-servlet_3.0_spec</artifactId>
+            <version>1.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.myfaces.core</groupId>
+            <artifactId>myfaces-api</artifactId>
+            <version>2.2.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.geronimo.specs</groupId>
+            <artifactId>geronimo-atinject_1.0_spec</artifactId>
+            <version>1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.geronimo.specs</groupId>
+            <artifactId>geronimo-jcdi_1.0_spec</artifactId>
+            <version>1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.geronimo.specs</groupId>
+            <artifactId>geronimo-interceptor_1.1_spec</artifactId>
+            <version>1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.geronimo.specs</groupId>
+            <artifactId>geronimo-validation_1.0_spec</artifactId>
+            <version>1.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.geronimo.specs</groupId>
+            <artifactId>geronimo-ejb_3.1_spec</artifactId>
+            <version>1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.geronimo.specs</groupId>
+            <artifactId>geronimo-jta_1.1_spec</artifactId>
+            <version>1.1.1</version>
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <finalName>eebench</finalName>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+
+            <!--
+             * Just used for local testing!
+             * simply start the app with mvn tomee:run
+            -->
+            <plugin>
+                <groupId>org.apache.openejb.maven</groupId>
+                <artifactId>tomee-maven-plugin</artifactId>
+                <version>${tomee.version}</version>
+                <configuration>
+                    <tomeeVersion>${tomee.version}</tomeeVersion>
+                    <tomeeClassifier>${tomee.classifier}</tomeeClassifier>
+                    <synchronization>
+                        <extensions>
+                            <extension>.class</extension>
+                            <extension>.properties</extension>
+                            <!-- monitor css files for daniel valda -->
+                            <extension>.css</extension>
+                            <!-- if you want to update each time you build with mvn compile -->
+                        </extensions>
+                        <updateInterval>2</updateInterval>
+                    </synchronization>
+                    <!-- important: for some reason, this has to be false, else reloading does not work! -->
+                    <reloadOnUpdate>false</reloadOnUpdate>
+                    <!-- removed the .war extension from the "warFile" property, so we can use exploded archives -->
+                    <warFile>${project.build.directory}/${project.build.finalName}</warFile>
+                    <!-- path that is used by tomEE in the tomee:deploy and tomee:undeploy goal -->
+                    <path>${project.build.directory}/apache-tomee/webapps${project.build.finalName}</path>
+                    <args>-Djava.awt.headless=true -Dfile.encoding=UTF-8 -server -Xms128m -Xmx1024m -XX:PermSize=196m -XX:MaxPermSize=128m -XX:+DisableExplicitGC</args>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.openejb</groupId>
+                        <artifactId>apache-tomee</artifactId>
+                        <version>${tomee.version}</version>
+                        <classifier>${tomee.classifier}</classifier>
+                        <type>zip</type>
+                        <!-- we have to set this to runtime, else it does not work -->
+                        <scope>runtime</scope>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>

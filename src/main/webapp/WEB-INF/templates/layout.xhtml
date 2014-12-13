@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view>
+    <ui:insert name="metadata"/>
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <ui:insert name="header"></ui:insert>
+        <title><ui:insert name="title"></ui:insert></title>
+    </h:head>
+    <h:body>
+        <div id="outer">
+            <div id="home">
+                <div id="mainContainer">
+                    <div id="headContainer">
+                        <!-- TODO: Links + Datum! -->
+                        <!-- /MainNavigation -->
+                    </div>
+                    <!-- /headContainer -->
+
+                    <div id="appContainer">
+                        <div id="menuContainer">
+                            some menu
+                        </div>
+                        <!-- real content on the white-board. -->
+                        <div id="contentContainer">
+                            <h:messages id="globalMessagesPanel" globalOnly="true" errorClass="errorMessage"
+                                        infoClass="infoMessage" warnClass="warnMessage" fatalClass="errorMessage"/>
+                            <ui:insert name="content"/>
+                        </div>
+                        <!-- /contentContainer -->
+                    </div>
+                </div>
+                <!-- /contentContainer -->
+            </div>
+            <!-- /mainContainer -->
+        </div>
+
+    </h:body>
+</f:view>
+</html>

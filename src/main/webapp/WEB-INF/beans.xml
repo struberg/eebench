@@ -1,0 +1,5 @@
+<beans>
+    <interceptors>
+        <class>org.apacheextras.eebench.cdibench.interceptor.NopInterceptor</class>
+    </interceptors>
+</beans>

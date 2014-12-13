@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/WEB-INF/templates/layout.xhtml">
+    <ui:define name="title">JSF Benchmark Page</ui:define>
+
+    <ui:define name="content">
+        <h:form>
+            <div id="overview">
+                <h:dataTable id="values" value="#{jsfBenchBean.myDtos}" var="dto">
+                    <h:column><h:outputText value="#{dto.int1}"/></h:column>
+                    <h:column><h:outputText value="#{dto.int2}"/></h:column>
+                    <h:column><h:outputText value="#{dto.int3}"/></h:column>
+                    <h:column><h:outputText value="#{dto.int4}"/></h:column>
+                    <h:column><h:outputText value="#{dto.int5}"/></h:column>
+                    <h:column><h:outputText value="#{dto.int6}"/></h:column>
+                    <h:column><h:outputText value="#{dto.int7}"/></h:column>
+                    <h:column><h:outputText value="#{dto.int8}"/></h:column>
+                    <h:column><h:outputText value="#{dto.int9}"/></h:column>
+                    <h:column><h:outputText value="#{dto.str1}"/></h:column>
+                    <h:column><h:outputText value="#{dto.str2}"/></h:column>
+                    <h:column><h:outputText value="#{dto.str3}"/></h:column>
+                    <h:column><h:outputText value="#{dto.str4}"/></h:column>
+                    <h:column><h:outputText value="#{dto.str5}"/></h:column>
+                    <h:column><h:outputText value="#{dto.str6}"/></h:column>
+                    <h:column><h:outputText value="#{dto.str7}"/></h:column>
+                    <h:column><h:outputText value="#{dto.str8}"/></h:column>
+                    <h:column><h:outputText value="#{dto.str9}"/></h:column>
+                </h:dataTable>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>
