@@ -27,29 +27,48 @@ import javax.inject.Named;
  */
 @RequestScoped
 @Named
-public class MemoryAllocationBean {
+public class MemoryReadWriteBean {
 
-    private static final int NUM_ITERATIONS = 300000;
-    private static byte[] content = new byte[1000];
+    // 10MB
+    private static final int SIZE = 10000000;
 
 
     public String getState() {
 
         StringBuilder sb = new StringBuilder();
 
-        for (int i = 0; i < NUM_ITERATIONS; i++) {
-            allocMemory();
+        byte[] bytes = new byte[SIZE];
+        for (int i = 0; i < SIZE; i = i + 10) {
+
+            bytes[i] = 0;
+            bytes[i + 1] = 1;
+            bytes[i + 2] = 2;
+            bytes[i + 3] = 3;
+            bytes[i + 4] = 4;
+            bytes[i + 5] = 5;
+            bytes[i + 6] = 6;
+            bytes[i + 7] = 7;
+            bytes[i + 8] = 8;
+            bytes[i + 9] = 9;
+
+            sb.append("01234567890");
+        }
+
+        // just to do something with it
+        bytes.toString();
+        synchronized(this) {
+            // has no effect other than trashing the cache
+            bytes.toString();
+            sb.toString();
+        }
+
+        // and now read it all
+        byte b;
+        for (int i = 0; i < SIZE; i = i + 10) {
+            b = bytes[i];
         }
 
         return "OK";
-    }
-
-    private void allocMemory() {
-        StringBuffer sb = new StringBuffer();
-        sb.append(content);
-        sb.toString();
-
-        // do nothing with it, it's just to pollute the stack a bit ;)
     }
 
 }
