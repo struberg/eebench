@@ -29,8 +29,8 @@ import javax.inject.Named;
 @Named
 public class MemoryReadWriteBean {
 
-    // 10MB
-    private static final int SIZE = 10000000;
+    // 5MB
+    private static final int SIZE = 5000000;
 
 
     public String getState() {
