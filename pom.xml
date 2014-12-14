@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.apacheextras.eebench</groupId>
@@ -108,7 +109,7 @@
                     <warFile>${project.build.directory}/${project.build.finalName}</warFile>
                     <!-- path that is used by tomEE in the tomee:deploy and tomee:undeploy goal -->
                     <path>${project.build.directory}/apache-tomee/webapps${project.build.finalName}</path>
-                    <args>-Djava.awt.headless=true -Dfile.encoding=UTF-8 -server -Xms128m -Xmx1024m -XX:PermSize=196m -XX:MaxPermSize=128m -XX:+DisableExplicitGC</args>
+                    <args>-Djava.awt.headless=true -Dfile.encoding=UTF-8 -server -Xms128m -Xmx4096m -XX:PermSize=196m -XX:MaxPermSize=128m -XX:+DisableExplicitGC</args>
                 </configuration>
                 <dependencies>
                     <dependency>
