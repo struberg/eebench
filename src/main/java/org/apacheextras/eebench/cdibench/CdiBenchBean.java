@@ -31,7 +31,7 @@ import org.apacheextras.eebench.cdibench.beans.SimpleRequestScopedBeanWithoutInt
 @RequestScoped
 @Named
 public class CdiBenchBean {
-    private final static int NUM_ITERATIONS = 100000;
+    private final static int NUM_ITERATIONS = 10000;
 
     private @Inject SimpleApplicationScopedBeanWithoutInterceptor simpleApplicationScopedBeanWithoutInterceptor;
     private @Inject SimpleRequestScopedBeanWithoutInterceptor simpleRequestScopedBeanWithoutInterceptor;
