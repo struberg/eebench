@@ -35,26 +35,40 @@ public class MemoryAllocationBean {
 
     public String getState() {
 
+        StringBuilder sb = new StringBuilder();
+
         byte[] bytes = new byte[SIZE];
         for (int i = 0; i < SIZE; i = i + 10) {
 
             bytes[i] = 0;
-            bytes[i + 1] = 0;
-            bytes[i + 2] = 0;
-            bytes[i + 3] = 0;
-            bytes[i + 4] = 0;
-            bytes[i + 5] = 0;
-            bytes[i + 6] = 0;
-            bytes[i + 7] = 0;
-            bytes[i + 8] = 0;
-            bytes[i + 9] = 0;
+            bytes[i + 1] = 1;
+            bytes[i + 2] = 2;
+            bytes[i + 3] = 3;
+            bytes[i + 4] = 4;
+            bytes[i + 5] = 5;
+            bytes[i + 6] = 6;
+            bytes[i + 7] = 7;
+            bytes[i + 8] = 8;
+            bytes[i + 9] = 9;
 
+            sb.append("01234567890");
         }
 
         // just to do something with it
         bytes.toString();
+        synchronized(this) {
+            // has no effect other than trashing the cache
+            bytes.toString();
+            sb.toString();
+        }
 
-        return "memory benchmark done";
+        // and now read it all
+        byte b;
+        for (int i = 0; i < SIZE; i = i + 10) {
+            b = bytes[i];
+        }
+
+        return "OK";
     }
 
 }
