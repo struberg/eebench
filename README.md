@@ -24,3 +24,5 @@ Just deploy the WAR and browse the page. It contains a download link to an Apach
 ### Running locally
 
 $> mvn clean install tomee:run
+
+Browse http://localhost:8080/eebench
