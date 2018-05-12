@@ -9,7 +9,8 @@
 
     <properties>
 
-        <tomee.version>1.7.1</tomee.version>
+        <tomee.version>7.0.4</tomee.version>
+        <myfaces.version>2.2.12</myfaces.version>
 
         <!-- for most samples simple web-profile is enough -->
         <tomee.classifier>webprofile</tomee.classifier>
@@ -27,9 +28,16 @@
         <dependency>
             <groupId>org.apache.myfaces.core</groupId>
             <artifactId>myfaces-api</artifactId>
-            <version>2.2.0</version>
+            <version>${myfaces.version}</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.apache.myfaces.core</groupId>
+            <artifactId>myfaces-impl</artifactId>
+            <version>${myfaces.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
         <dependency>
             <groupId>org.apache.geronimo.specs</groupId>
             <artifactId>geronimo-atinject_1.0_spec</artifactId>
@@ -87,7 +95,7 @@
              * simply start the app with mvn tomee:run
             -->
             <plugin>
-                <groupId>org.apache.openejb.maven</groupId>
+                <groupId>org.apache.tomee.maven</groupId>
                 <artifactId>tomee-maven-plugin</artifactId>
                 <version>${tomee.version}</version>
                 <configuration>
@@ -111,17 +119,6 @@
                     <path>${project.build.directory}/apache-tomee/webapps${project.build.finalName}</path>
                     <args>-Djava.awt.headless=true -Dfile.encoding=UTF-8 -server -Xms128m -Xmx4096m -XX:PermSize=196m -XX:MaxPermSize=128m -XX:+DisableExplicitGC</args>
                 </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.apache.openejb</groupId>
-                        <artifactId>apache-tomee</artifactId>
-                        <version>${tomee.version}</version>
-                        <classifier>${tomee.classifier}</classifier>
-                        <type>zip</type>
-                        <!-- we have to set this to runtime, else it does not work -->
-                        <scope>runtime</scope>
-                    </dependency>
-                </dependencies>
             </plugin>
 
         </plugins>
